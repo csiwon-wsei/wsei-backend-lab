@@ -2,6 +2,7 @@
 using ApplicationCore.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.Dto;
 
 namespace WebAPI.Controllers;
 [ApiController]

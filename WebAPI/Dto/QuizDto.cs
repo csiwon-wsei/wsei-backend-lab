@@ -1,6 +1,7 @@
 ﻿using ApplicationCore.Models;
+using WebAPI.Controllers;
 
-namespace WebAPI.Controllers;
+namespace WebAPI.Dto;
 
 public class QuizDto
 {
@@ -8,7 +9,7 @@ public class QuizDto
     public string Title { get; set; }
     public List<QuizItemDto> Items { get; set; }
     
-    public static QuizDto of(Quiz quiz)
+    public static QuizDto? of(Quiz? quiz)
     {
         if (quiz is null)
         {
