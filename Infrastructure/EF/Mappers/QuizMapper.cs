@@ -1,5 +1,4 @@
 ﻿using ApplicationCore.Models;
-using AutoMapper;
 using Infrastructure.EF.Entities;
 
 namespace Infrastructure.EF.Mappers;

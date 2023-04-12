@@ -1,5 +1,4 @@
-﻿using ApplicationCore.Models;
-using Infrastructure.EF.Entities;
+﻿using Infrastructure.EF.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.EF;
@@ -8,7 +7,7 @@ public class QuizDbContext : DbContext
 {
     public DbSet<QuizEntity> Quizzes { get; set; }
     public DbSet<QuizItemEntity> QuizItems { get; set; }
-    public DbSet<QuizItemUserAnswer> UserAnswers { get; set; }
+    public DbSet<QuizItemUserAnswerEntity> UserAnswers { get; set; }
     public DbSet<UserEntity> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -21,7 +20,22 @@ public class QuizDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-
+        
+        modelBuilder.Entity<QuizItemUserAnswerEntity>()
+            .HasOne(e => e.QuizItem)
+            .WithMany()
+            .HasForeignKey(a => a.QuizItemId);
+        
+        modelBuilder.Entity<QuizItemUserAnswerEntity>()
+            .HasOne<QuizEntity>()
+            .WithMany()
+            .HasForeignKey(a => a.QuizId);
+        
+        modelBuilder.Entity<QuizItemUserAnswerEntity>()
+            .HasOne<UserEntity>()
+            .WithMany()
+            .HasForeignKey(a => a.UserId);
+        
         modelBuilder.Entity<QuizItemAnswerEntity>()
             .HasData(
                 new QuizItemAnswerEntity() {Id = 1, Answer = "1"},

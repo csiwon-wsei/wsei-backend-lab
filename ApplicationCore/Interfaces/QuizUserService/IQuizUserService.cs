@@ -5,8 +5,6 @@ namespace ApplicationCore.Interfaces;
 
 public interface IQuizUserService
 {
-    Quiz CreateAndGetQuizRandom(int count);
-
     IEnumerable<Quiz> FindAllQuizzes();
 
     Quiz? FindQuizById(int id);

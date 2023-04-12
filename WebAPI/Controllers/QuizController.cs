@@ -38,9 +38,9 @@ public class QuizController: ControllerBase
             var answer = _service.SaveUserAnswerForQuiz(quizId, itemId, dto.UserId, dto.UserAnswer);
             return Created("", answer);
         }
-        catch (Exception)
+        catch (Exception e)
         {
-            return BadRequest();
+            return BadRequest(e.Message);
         }
     }
 
