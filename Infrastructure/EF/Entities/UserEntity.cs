@@ -1,10 +1,8 @@
-﻿namespace Infrastructure.EF.Entities;
+﻿using Microsoft.AspNetCore.Identity;
 
-public class UserEntity
+namespace Infrastructure.EF.Entities;
+
+public class UserEntity:IdentityUser<int>
 {
-    public int Id { get; set; }
     
-    public string Email { get; set; }
-    
-    public string Password { get; set; }
 }

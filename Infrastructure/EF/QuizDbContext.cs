@@ -1,9 +1,10 @@
 ﻿using Infrastructure.EF.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.EF;
 
-public class QuizDbContext : DbContext
+public class QuizDbContext : IdentityDbContext<UserEntity, UserRole, int>
 {
     public DbSet<QuizEntity> Quizzes { get; set; }
     public DbSet<QuizItemEntity> QuizItems { get; set; }

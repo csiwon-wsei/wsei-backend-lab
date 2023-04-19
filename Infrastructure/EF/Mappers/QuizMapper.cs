@@ -14,7 +14,7 @@ public static class QuizMapper
         );
     }
 
-    public static QuizItem FromEntityToQuizItem(QuizItemEntity entity)
+    public static QuizItem FromEntityToQuizItem(QuizItemEntity? entity)
     {
         return new QuizItem(
             entity.Id,

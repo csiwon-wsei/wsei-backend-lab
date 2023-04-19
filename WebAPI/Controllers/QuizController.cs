@@ -1,5 +1,6 @@
 ﻿using ApplicationCore.Interfaces;
 using ApplicationCore.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Dto;
@@ -30,6 +31,7 @@ public class QuizController: ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Policy = "Bearer")]
     [Route("{quizId}/items/{itemId}/answers")]
     public ActionResult SaveAnswer([FromBody] QuizItemAnswerDto dto, int quizId, int itemId)
     {

@@ -1,8 +1,8 @@
-﻿using ApplicationCore.Interfaces.Repository;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace ApplicationCore.Models;
 
-public class User: IIdentity<int>
+public class User
 {
     public int Id { get; set; }
     
