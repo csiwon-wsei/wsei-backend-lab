@@ -1,6 +1,6 @@
 ﻿using ApplicationCore.Interfaces.Repository;
 
-namespace ApplicationCore.Models;
+namespace ApplicationCore.Models.QuizSession;
 
 public class QuizSession: IIdentity<int>
 {
@@ -17,15 +17,9 @@ public class QuizSession: IIdentity<int>
     public TimeSpan MaxDuration { get; init; }
     public int Id { get; set; }
 
-    public IEnumerable<QuizItemAnswer> Answers
-    {
-        get
-        {
-            return _answers.AsEnumerable();
-        }
-    }
+    public IEnumerable<QuizItemAnswer> Answers => _answers.AsEnumerable();
 
-    private ISet<QuizItemAnswer> _answers = new HashSet<QuizItemAnswer>();
+    private readonly ISet<QuizItemAnswer> _answers = new HashSet<QuizItemAnswer>();
     
 
 }

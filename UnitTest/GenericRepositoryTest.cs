@@ -21,7 +21,7 @@ public class GenericRepositoryTest
             incorrectAnswers: new List<string>() {"B", "C", "D"}, 
             correctAnswer:"A", id: 0));
         item2 = quizItemRepository.Add(new QuizItem(
-            question: "{Planeta?",
+            question: "Planeta?",
             incorrectAnswers: new List<string>() {"Mars", "Wenus", "Pluton"}, 
             correctAnswer:"Jowisz", id: 0));
         item3 = quizItemRepository.Add(new QuizItem(

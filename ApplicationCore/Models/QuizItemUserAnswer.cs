@@ -5,9 +5,9 @@ namespace ApplicationCore.Models;
 public class QuizItemUserAnswer: IIdentity<string>
 {
     public int QuizId { get; init; }
-    public QuizItem  QuizItem{ get; init; }
+    public QuizItem?  QuizItem{ get; init; }
     public int UserId { get; init; }
-    public string Answer { get; init; }
+    public string? Answer { get; init; }
     public QuizItemUserAnswer(QuizItem quizItem, int userId, int quizId,string answer)
     {
         QuizItem = quizItem;
@@ -20,7 +20,7 @@ public class QuizItemUserAnswer: IIdentity<string>
     }
     public bool IsCorrect()
     {
-        return QuizItem.CorrectAnswer == Answer;
+        return QuizItem?.CorrectAnswer == Answer;
     }
     public string Id
     {

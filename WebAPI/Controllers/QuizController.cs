@@ -38,11 +38,19 @@ public class QuizController: ControllerBase
         try
         {
             var answer = _service.SaveUserAnswerForQuiz(quizId, itemId, dto.UserId, dto.UserAnswer);
-            return Created("", answer);
+            return Created("", new
+            {
+                QuizId = quizId,
+                QuizItemId = itemId,
+                UserAnswer = dto.UserAnswer
+            });
         }
         catch (Exception e)
         {
-            return BadRequest(e.Message);
+            return BadRequest(new
+            {
+                error = e.Message
+            });
         }
     }
 

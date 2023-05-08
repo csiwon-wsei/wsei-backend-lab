@@ -1,14 +1,16 @@
 using ApplicationCore.Interfaces;
 using Infrastructure.EF;
 using Infrastructure.EF.Services;
+using Infrastructure.MongoDB;
 using Microsoft.OpenApi.Models;
-using Web;
 using WebAPI.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSingleton<JwtSettings>();
+builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
+builder.Services.AddSingleton<QuizUserServiceMongoDB>();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<QuizDbContext>();
 builder.Services.ConfigureJWT(new JwtSettings(builder.Configuration));

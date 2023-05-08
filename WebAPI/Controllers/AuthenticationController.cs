@@ -6,6 +6,7 @@ using JWT.Builder;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using WebAPI.Configuration;
 using WebAPI.Dto;
 
@@ -26,6 +27,7 @@ public class AuthenticationController : ControllerBase
     }
 
     [HttpPost("login")]
+    [Produces("application/json"), Consumes("application/json")]
     [AllowAnonymous]
     public async Task<IActionResult> Authenticate([FromBody] LoginUserDto user)
     {
@@ -54,12 +56,5 @@ public class AuthenticationController : ControllerBase
             .Audience(_jwtSettings.Audience)
             .Issuer(_jwtSettings.Issuer)
             .Encode();
-    }
-    
-    [AcceptVerbs("GET", "POST")]
-    [Produces("application/json")]
-    public async Task<string> InvalidateToken()
-    {
-        return "";
     }
 }

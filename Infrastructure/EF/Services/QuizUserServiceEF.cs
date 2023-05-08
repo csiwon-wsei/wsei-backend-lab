@@ -89,10 +89,10 @@ public class QuizUserServiceEF : IQuizUserService
         {
             var saved = _context.UserAnswers.Add(entity).Entity;
             _context.SaveChanges();
-            
+            var items = _context.QuizItems.Include(i => i.IncorrectAnswers).SingleOrDefault(i => i.Id == quizItemId); 
             return new QuizItemUserAnswer() {
                 UserId = saved.UserId,
-                QuizItem = saved.QuizItem is not null ? QuizMapper.FromEntityToQuizItem(saved.QuizItem) : null,
+                QuizItem = QuizMapper.FromEntityToQuizItem(items),
                 QuizId = saved.QuizId,
                 Answer = saved.UserAnswer
                 };
