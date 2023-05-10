@@ -1,10 +1,5 @@
-﻿using System.Net.Mime;
-using ApplicationCore.Interfaces;
-using ApplicationCore.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.HttpResults;
+﻿using ApplicationCore.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Formatters;
 using WebAPI.Dto;
 
 namespace WebAPI.Controllers;
@@ -44,7 +39,7 @@ public class QuizController: ControllerBase
             {
                 QuizId = quizId,
                 QuizItemId = itemId,
-                UserAnswer = dto.UserAnswer
+                dto.UserAnswer
             });
         }
         catch (Exception e)
