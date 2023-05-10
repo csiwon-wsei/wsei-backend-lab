@@ -12,9 +12,9 @@ builder.Services.AddSingleton<JwtSettings>();
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
 builder.Services.AddSingleton<QuizUserServiceMongoDB>();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<QuizDbContext>();
 builder.Services.ConfigureJWT(new JwtSettings(builder.Configuration));
 builder.Services.ConfigureIdentity();
+builder.Services.ConfigureCors();
 builder.Services.AddTransient<IQuizUserService, QuizUserServiceEF>();       // infrastructure
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
@@ -66,3 +66,7 @@ app.UseAuthorization();
 app.MapControllers();
 app.AddUsers();
 app.Run();
+
+public partial class Program
+{
+} 
