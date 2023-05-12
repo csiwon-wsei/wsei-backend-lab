@@ -5,6 +5,7 @@ using Infrastructure.EF.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 
@@ -12,25 +13,25 @@ namespace WebAPI.Configuration;
 
 public static class Configure
 {
-
     public static void ConfigureCors(this IServiceCollection services)
     {
         services.AddCors(options =>
         {
             options.AddPolicy(
-                "CorsPolicy", 
-                builder => 
+                "CorsPolicy",
+                builder =>
                     builder
-                    .AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader());
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
         });
     }
-    
-    public static void ConfigureIdentity(this IServiceCollection services)
+
+    public static void ConfigureIdentityAndDatabase(this IServiceCollection services, IConfiguration configuration)
     {
         services
-            .AddDbContext<QuizDbContext>()
+            .AddDbContext<QuizDbContext>(o =>
+                o.UseSqlServer(configuration.GetSection("Database").GetSection("Connection").Value))
             .AddIdentity<UserEntity, UserRole>(options =>
             {
                 options.Password.RequireDigit = true;
@@ -51,10 +52,7 @@ public static class Configure
                 .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
                 .RequireAuthenticatedUser()
                 .Build());
-            opt.AddPolicy("Email", policy =>
-            {
-                policy.RequireClaim("email");
-            });
+            opt.AddPolicy("Email", policy => { policy.RequireClaim("email"); });
         });
         services
             .AddAuthentication(opt =>
@@ -89,6 +87,7 @@ public static class Configure
                         {
                             context.Response.Headers.Add("Token-expired", "true");
                         }
+
                         return Task.CompletedTask;
                     },
                     OnChallenge = context =>
@@ -109,8 +108,9 @@ public static class Configure
                 };
             });
     }
-    
-    public static async void AddUsers(this WebApplication app){
+
+    public static async void AddUsers(this WebApplication app)
+    {
         using (var scope = app.Services.CreateScope())
         {
             var userManager = scope.ServiceProvider.GetService<UserManager<UserEntity>>();

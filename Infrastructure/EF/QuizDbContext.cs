@@ -16,13 +16,6 @@ public class QuizDbContext : IdentityDbContext<UserEntity, UserRole, int>
     {
     }
     
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        base.OnConfiguring(optionsBuilder);
-        optionsBuilder.UseSqlServer(
-            "DATA SOURCE=CEES\\SQLEXPRESS;DATABASE=quizdb;Integrated Security=true;TrustServerCertificate=True");
-    }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

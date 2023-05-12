@@ -72,7 +72,7 @@ public class QuizApiGetRequestTest : IClassFixture<QuizAppTestFactory<Program>>
     }
 
     [Fact]
-    public async void GetShouldReturnTwoQuizzes()
+    public async void GetAllShouldReturnOneQuiz()
     {
         //Arrange
 
@@ -100,6 +100,7 @@ public class QuizApiGetRequestTest : IClassFixture<QuizAppTestFactory<Program>>
         Assert.Contains("application/json", result.Content.Headers.GetValues("Content-Type").First());
     }
 
+    //TODO dokończyć (pobranie tokena) i poprawić
     [Fact]
     public async void PostShouldReturnResponse()
     {

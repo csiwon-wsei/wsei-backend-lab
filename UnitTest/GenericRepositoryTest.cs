@@ -1,6 +1,7 @@
 ﻿using ApplicationCore.Interfaces.Criteria;
 using ApplicationCore.Interfaces.Repository;
 using ApplicationCore.Models;
+using ApplicationCore.Specifications;
 using Infrastructure.Memory;
 using Infrastructure.Memory.Repository;
 

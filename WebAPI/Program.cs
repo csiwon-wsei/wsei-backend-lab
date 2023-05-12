@@ -13,7 +13,7 @@ builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("Mo
 builder.Services.AddSingleton<QuizUserServiceMongoDB>();
 builder.Services.AddSwaggerGen();
 builder.Services.ConfigureJWT(new JwtSettings(builder.Configuration));
-builder.Services.ConfigureIdentity();
+builder.Services.ConfigureIdentityAndDatabase(builder.Configuration);
 builder.Services.ConfigureCors();
 builder.Services.AddTransient<IQuizUserService, QuizUserServiceEF>();       // infrastructure
 builder.Services.AddEndpointsApiExplorer();

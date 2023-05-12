@@ -8,11 +8,6 @@
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a06168fe_002Da979_002D4b79_002Dae9c_002Df4627426d9a0/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="CreatQuizTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Or&gt;&#xD;
-    &lt;Project Location="C:\Users\cs\source\repos\wsei.backend.stacjonarne\lab\wsei-back-end.lab-02\UnitTest" Presentation="&amp;lt;UnitTest&amp;gt;" /&gt;&#xD;
-    &lt;TestAncestor&gt;&#xD;
-      &lt;TestId&gt;xUnit::77FCB88E-43C7-4951-9A76-53BB370C8295::net7.0::IntegrationTest.UnitTest1.Test1&lt;/TestId&gt;&#xD;
-    &lt;/TestAncestor&gt;&#xD;
-  &lt;/Or&gt;&#xD;
+  &lt;Project Location="C:\Users\cs\RiderProjects\wsei-back-end\lab\wsei-back-end.2023\IntegrationTest" Presentation="&amp;lt;IntegrationTest&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	</wpf:ResourceDictionary>

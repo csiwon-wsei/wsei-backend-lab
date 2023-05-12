@@ -1,8 +1,9 @@
 ﻿
 
+using ApplicationCore.Interfaces.Criteria;
 using ApplicationCore.Models;
 
-namespace ApplicationCore.Interfaces.Criteria;
+namespace ApplicationCore.Specifications;
 
 public class QuizItemByQuestion: BaseSpecification<QuizItem>
 {

@@ -1,8 +1,6 @@
 using System.Data.Common;
 using Infrastructure.EF;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.Data.SqlClient;
-using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
 namespace IntegrationTest;
