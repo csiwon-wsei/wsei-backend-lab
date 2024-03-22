@@ -1,5 +1,7 @@
 ﻿using ApplicationCore.Interfaces;
+using ApplicationCore.Models;
 using Microsoft.AspNetCore.Mvc;
+using Web.Services;
 using WebAPI.Dto;
 
 namespace WebAPI.Controllers;
@@ -8,10 +10,12 @@ namespace WebAPI.Controllers;
 public class QuizController: ControllerBase
 {
     private readonly IQuizUserService _service;
+    private readonly IMessageProducer _producer;
 
-    public QuizController(IQuizUserService service)
+    public QuizController(IQuizUserService service, IMessageProducer producer)
     {
         _service = service;
+        _producer = producer;
     }
     [HttpGet]
     [Route("{id}")]
@@ -27,17 +31,32 @@ public class QuizController: ControllerBase
         return _service.FindAllQuizzes().Select(QuizDto.of).AsEnumerable();
     }
 
+    [HttpGet]
+    [Route("{quizId}/items/{itemId}/answers")]
+    public ActionResult<QuizItemAnswerDto> GetAnswer(int quizId, int itemId)
+    {
+        //TODO dokończyć
+        return Ok();
+    }
+
     [HttpPost]
     //[Authorize(Policy = "Bearer")]
     [Route("{quizId}/items/{itemId}/answers")]
-    public ActionResult SaveAnswer([FromBody] QuizItemAnswerDto dto, int quizId, int itemId)
+    public ActionResult SaveAnswer([FromBody] QuizItemAnswerDto dto, LinkGenerator linker,int quizId, int itemId)
     {
         try
         {
             var answer = _service.SaveUserAnswerForQuiz(quizId, itemId, dto.UserId, dto.UserAnswer);
+            _producer.SendMessage(new AnswerStatisticDto()
+            {
+                Answer = dto.UserAnswer,
+                QuizItemId = itemId,
+                isCorrect = _service.FindQuizById(quizId).Items.Find(i => i.Id == itemId).CorrectAnswer == dto.UserAnswer
+            });
+            //var uri = linker.GetPathByAction(HttpContext, "GetAnswer", "Quiz", (quizId, itemId)) ?? string.Empty;
             return Created("", new
             {
-                QuizId = quizId,
+                QuizId = answer.QuizId,
                 QuizItemId = itemId,
                 dto.UserAnswer
             });

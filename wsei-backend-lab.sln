@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTest", "IntegrationTest\IntegrationTest.csproj", "{77FCB88E-43C7-4951-9A76-53BB370C8295}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatisticRabbitMQSubscriber", "StatisticRabbitMQSubscriber\StatisticRabbitMQSubscriber.csproj", "{6392F846-9E4D-4105-A0FF-076AEB725289}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,5 +56,9 @@ Global
 		{77FCB88E-43C7-4951-9A76-53BB370C8295}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77FCB88E-43C7-4951-9A76-53BB370C8295}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77FCB88E-43C7-4951-9A76-53BB370C8295}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6392F846-9E4D-4105-A0FF-076AEB725289}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6392F846-9E4D-4105-A0FF-076AEB725289}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6392F846-9E4D-4105-A0FF-076AEB725289}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6392F846-9E4D-4105-A0FF-076AEB725289}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
