@@ -1,16 +1,15 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.CodeAnalysis.Elfie.Serialization;
 
-namespace BackendLab01.Pages
+namespace BackendLab01.Pages.Quiz
 {
     
-    public class QuizModel : PageModel
+    public class QuizItemModel : PageModel
     {
         private readonly IQuizUserService _userService;
 
         private readonly ILogger _logger;
-        public QuizModel(IQuizUserService userService, ILogger<QuizModel> logger)
+        public QuizItemModel(IQuizUserService userService, ILogger<QuizItemModel> logger)
         {
             _userService = userService;
             _logger = logger;
@@ -25,28 +24,41 @@ namespace BackendLab01.Pages
         
         [BindProperty]
         public int QuizId { get; set; }
-        
         [BindProperty]
         public int ItemId { get; set; }
+        [BindProperty]
+        public int? NextItemIndex { get; set; }
         
-        public void OnGet(int quizId, int itemId)
+        public IActionResult OnGet(int quizId, int itemIndex)
         {
             QuizId = quizId;
-            ItemId = itemId;
             var quiz = _userService.FindQuizById(quizId);
-            var quizItem = quiz?.Items[itemId - 1];
-            Question = quizItem?.Question;
-            Answers = new List<string>();
-            if (quizItem is not null)
+            if (quiz is null)
             {
-                Answers.AddRange(quizItem?.IncorrectAnswers);
-                Answers.Add(quizItem?.CorrectAnswer);
+                return BadRequest();
             }
+            var items = quiz.Items;
+            if (items.Count <= itemIndex)
+            {
+                return NotFound();
+            }
+            var quizItem = quiz.Items[itemIndex];
+            ItemId = quizItem.Id;
+            NextItemIndex = items.Count > itemIndex + 1 ? itemIndex + 1 : null; 
+            Question = quizItem.Question;
+            Answers = new List<string>() {quizItem.CorrectAnswer};
+            Answers.AddRange(quizItem.IncorrectAnswers);
+            return Page();
         }
 
         public IActionResult OnPost()
         {
-            return RedirectToPage("Item", new {quizId = QuizId, itemId = ItemId + 1});
+            _userService.SaveUserAnswerForQuiz(QuizId, 1, ItemId , UserAnswer);
+            if (NextItemIndex is null)
+            {
+                return RedirectToPage("Summary", new {quizId = QuizId, userId = 1});
+            }
+            return RedirectToPage("Item", new {quizId = QuizId, itemIndex = NextItemIndex});
         }
     }
 }

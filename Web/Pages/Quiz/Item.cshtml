@@ -1,5 +1,5 @@
-@page "{quizId}/{itemId}"
-@model BackendLab01.Pages.QuizModel
+@page "{quizId}/{itemIndex?}"
+@model BackendLab01.Pages.Quiz.QuizItemModel;
 @{
     ViewData["Title"] = "Quiz";
     Layout = "~/Pages/Shared/_Layout.cshtml";
@@ -8,15 +8,22 @@
 <h1>Quiz</h1>
 <h3>@Model?.Question</h3>
 <form method="post">
-    @if (Model.Answers is not null)
+    @foreach (var item in Model?.Answers)
     {
-        @foreach (var item in Model?.Answers)
-        {
-            <div class="form-check">
-                <input class="form-check-input" type="radio" value="@item" asp-for=@Model.UserAnswer/>
-                <label class="form-check-label" for="@item">@item</label>
-            </div>
-        }
+        <div class="form-check">
+            <input type="hidden" asp-for="@Model.ItemId"/>
+            <input type="hidden" asp-for="@Model.QuizId"/>
+            <input type="hidden" asp-for="@Model.NextItemIndex"/>
+            <input class="form-check-input" type="radio" value="@item" asp-for=@Model.UserAnswer/>
+            <label class="form-check-label" for="@item">@item</label>
+        </div>
     }
-    <button type="submit">Zapisz</button>
+    @if (Model.NextItemIndex is not null)
+    {
+        <button type="submit">Next</button>
+    }
+    else
+    {
+        <button type="submit">Finish</button>
+    }
 </form>

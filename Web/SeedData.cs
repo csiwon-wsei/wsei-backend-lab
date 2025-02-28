@@ -18,14 +18,18 @@ public static class SeedData
             //TODO Utwórz obiekt klasy Quiz z kolekcją pytań dodanych do quizItemRepo
             //TODO Dodaj Quiz do quizRepo
             
-            QuizItem item1 = new QuizItem(id:1, question: "2+4", correctAnswer: "6", incorrectAnswers: ["5","7", "8"]);
-            QuizItem item2 = new QuizItem(id:1, question: "2*4", correctAnswer: "8", incorrectAnswers: ["4","6", "9"]);
-            QuizItem item3 = new QuizItem(id:1, question: "8/2", correctAnswer: "4", incorrectAnswers: ["5","7", "8"]);
-            quizItemRepo?.Add(item1);
-            quizItemRepo?.Add(item2);
-            quizItemRepo?.Add(item3);
-            Quiz quiz = new(id: 1, title: "Matematyka", items: [item1, item2, item3]);
-            quizRepo?.Add(quiz);
+            List<QuizItem> quizItems = new List<QuizItem>();
+            
+            quizItems.Add(quizItemRepo.Add(new QuizItem(id: 1, correctAnswer: "5", question: "3 + 2",
+                incorrectAnswers: new List<string>() {"2", "3", "4"})));
+
+            quizItems.Add(quizItemRepo.Add(new QuizItem(id: 2, correctAnswer: "6", question: "3 * 2",
+                incorrectAnswers: new List<string>() {"2", "3", "7"})));
+            
+            quizItems.Add(quizItemRepo.Add(new QuizItem(id: 3, correctAnswer: "1", question: "3 - 2",
+                incorrectAnswers: new List<string>() {"2", "3", "6"})));
+
+            quizRepo.Add(new Quiz(id: 1, items: quizItems, title: "Matematyka"));
         }
     }
 }
