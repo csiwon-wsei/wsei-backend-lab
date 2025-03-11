@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTest", "Integrat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatisticRabbitMQSubscriber", "StatisticRabbitMQSubscriber\StatisticRabbitMQSubscriber.csproj", "{6392F846-9E4D-4105-A0FF-076AEB725289}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAppLabTwo", "BlazorAppLabTwo\BlazorAppLabTwo.csproj", "{1EC4A57D-969C-45E7-A0D0-AC69814609CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,5 +62,9 @@ Global
 		{6392F846-9E4D-4105-A0FF-076AEB725289}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6392F846-9E4D-4105-A0FF-076AEB725289}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6392F846-9E4D-4105-A0FF-076AEB725289}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EC4A57D-969C-45E7-A0D0-AC69814609CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EC4A57D-969C-45E7-A0D0-AC69814609CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EC4A57D-969C-45E7-A0D0-AC69814609CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EC4A57D-969C-45E7-A0D0-AC69814609CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

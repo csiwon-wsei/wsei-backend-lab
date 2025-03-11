@@ -1,11 +1,6 @@
 using System.Net;
-using ApplicationCore.Models;
 using Infrastructure.EF;
 using Infrastructure.EF.Entities;
-using Infrastructure.Migrations;
-using Microsoft.AspNetCore.Mvc.Testing;
-using Newtonsoft.Json;
-using SQLitePCL;
 using WebAPI.Controllers;
 using WebAPI.Dto;
 
