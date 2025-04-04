@@ -1,11 +1,7 @@
-﻿using ApplicationCore.Interfaces.Criteria;
+﻿namespace ApplicationCore.Commons.Repository;
 
-namespace ApplicationCore.Interfaces.Repository;
-
-public interface IGenericRepository<T, K> where T: IIdentity<K> where K : IComparable<K>
+public interface IGenericRepository<T, in K> where T: IIdentity<K> where K : IComparable<K>
 {
-    Task<T?> FindByIdAsync(K id);
-    Task<List<T>> FindAllAsync();
 
     T? FindById(K id);
 
@@ -16,5 +12,5 @@ public interface IGenericRepository<T, K> where T: IIdentity<K> where K : ICompa
     
     void Update(K id, T o);
     
-    IEnumerable<T> FindBySpecification(ISpecification<T> specification = null);
+    int SaveChanges();
 }

@@ -1,10 +1,9 @@
-﻿namespace Infrastructure.EF.Entities;
+using ApplicationCore.Models;
+using Microsoft.AspNetCore.Identity;
 
-public class UserEntity
+namespace Infrastructure.EF.Entities;
+
+public sealed class UserEntity: IdentityUser
 {
-    public int Id { get; set; }
-    
-    public string Email { get; set; }
-    
-    public string Password { get; set; }
+    public UserDetails Details { get; set; }
 }

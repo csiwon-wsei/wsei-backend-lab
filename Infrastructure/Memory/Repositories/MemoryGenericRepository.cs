@@ -1,7 +1,7 @@
-﻿using ApplicationCore.Interfaces.Criteria;
-using ApplicationCore.Interfaces.Repository;
+﻿using ApplicationCore.Commons.Repository;
+using Infrastructure.Memory.Generators;
 
-namespace Infrastructure.Memory.Repository;
+namespace Infrastructure.Memory.Repositories;
 
 public class MemoryGenericRepository<T, K>:IGenericRepository<T, K> where T: class, IIdentity<K> where K : IComparable<K>
 {
@@ -14,11 +14,7 @@ public class MemoryGenericRepository<T, K>:IGenericRepository<T, K> where T: cla
 
 
     private Dictionary<K, T> _data = new();
-
-    public IEnumerable<T> Find(ISpecification<T> specification = null)
-    {
-        return MemorySpecificationEvaluator<T>.GetQuery(_data.Values.AsQueryable(), specification);
-    }
+    
 
     public Task<T?> FindByIdAsync(K id)
     {
@@ -36,7 +32,7 @@ public class MemoryGenericRepository<T, K>:IGenericRepository<T, K> where T: cla
         {
             return _data[id];
         }
-        catch(KeyNotFoundException e)
+        catch(KeyNotFoundException)
         {
             return null;
         }
@@ -70,8 +66,8 @@ public class MemoryGenericRepository<T, K>:IGenericRepository<T, K> where T: cla
         }
     }
 
-    public IEnumerable<T> FindBySpecification(ISpecification<T> specification = null)
+    public int SaveChanges()
     {
-        return MemorySpecificationEvaluator<T>.GetQuery(_data.Values.AsQueryable(), specification);
+        throw new NotImplementedException();
     }
 }

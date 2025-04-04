@@ -1,10 +1,7 @@
-﻿using ApplicationCore.Interfaces.Repository;
+﻿namespace ApplicationCore.Models;
 
-namespace ApplicationCore.Models;
-
-public class User: IIdentity<int>
+public sealed class UserDetails
 {
-    public int Id { get; set; }
-    
-    public string Username { get; init; }
+    public DateTime DateOfBirth { get; set; }
+    public DateTime? CreatedAt { get; set; }
 }
